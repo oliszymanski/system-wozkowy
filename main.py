@@ -70,11 +70,6 @@ def generate_monthly_template( month, year ):
         if ( weekday_name == 'sobota' ):
             csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
 
-        # csv_file_writer.writerows( data ) 
-
-        
-
-
     # if ( _DBG0_ ): print( dict_calendar )
 
     return dict_calendar
