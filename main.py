@@ -2,8 +2,11 @@
 #	IMPORTS:
 #=======================================================
 
+import io
+
 import csv
 import calendar
+
 import templates
 
 
@@ -25,11 +28,8 @@ dict_days = {
 }
 
 
-csv_output = open( 'grafik.csv', 'w' )      # csv
-
-csv_file_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )
-csv_file_writer = csv_output
-
+csv_file_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )     # csv
+csv_file_writer = open( 'grafik.csv', 'w', newline='' )
 
 
 
@@ -41,9 +41,8 @@ csv_file_writer = csv_output
 def generate_monthly_template( month, year ):
 
     dict_calendar = {}
-
     ls_weekdays = [ 'wtorek', 'czwartek', 'piątek', 'sobota' ]
-    
+
     for weekday_name in ls_weekdays:
         weekday = list( calendar.day_name ).index( dict_days[ weekday_name ] )
         cal = calendar.monthcalendar( year, month )
@@ -56,8 +55,22 @@ def generate_monthly_template( month, year ):
 
     dict_calendar = dict( sorted( dict_calendar.items(), key=lambda x: tuple(map(int, x[0].split('/'))) ) )
     
+    csv_file_writer.truncate()
+    csv_file_writer.write( templates.header )
+
     for date, weekday_name in dict_calendar.items():
-        print(f"{date} - {weekday_name}")
+        print(f"{ date } - { weekday_name }")
+
+        if ( weekday_name == 'wtorek' ):
+            csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
+        if ( weekday_name == 'czwartek' ):
+            csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
+        if ( weekday_name == 'piątek' ):
+            csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
+        if ( weekday_name == 'sobota' ):
+            csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
+
+        # csv_file_writer.writerows( data ) 
 
         
 
