@@ -38,7 +38,7 @@ csv_file_writer = open( 'grafik.csv', 'w', newline='' )
 #	FUNCTIONS:
 #=======================================================
 
-def generate_monthly_template( month, year ):
+def generate_month_template( month, year ):
 
     dict_calendar = {}
     ls_weekdays = [ 'wtorek', 'czwartek', 'piątek', 'sobota' ]
@@ -158,5 +158,5 @@ if ( __name__ == '__main__' ):
     # wpisz_pt( month, year )
     # wpisz_sob( month, year )
 
-    template = generate_monthly_template( month, year )
+    template = generate_month_template( month, year )
     print( template )
