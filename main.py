@@ -3,6 +3,7 @@
 #=======================================================
 
 import io
+import random
 
 import csv
 import calendar
@@ -74,6 +75,19 @@ def generate_month_template( month, year ):
 
     return dict_calendar
 
+
+
+def test_func():
+    ls = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+
+    ones_indices = random.sample( range( len(ls) ), 5 )
+
+    for index in ones_indices:
+        ls[ index ] = 1
+
+    print( f'new ls:\n{ls}' )
+
+    return
 
 
 def wpisz_wt( month, year, weekday_name='wtorek' ):
@@ -159,4 +173,6 @@ if ( __name__ == '__main__' ):
     # wpisz_sob( month, year )
 
     template = generate_month_template( month, year )
-    print( template )
+    # print( template )
+
+    test_func()
