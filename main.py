@@ -60,7 +60,7 @@ def generate_month_template( month, year ):
     csv_file_writer.write( templates.header )
 
     for date, weekday_name in dict_calendar.items():
-        print(f"{ date } - { weekday_name }")
+        print( f"{ date } - { weekday_name }" )
 
         if ( weekday_name == 'wtorek' ):
             csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
@@ -70,8 +70,6 @@ def generate_month_template( month, year ):
             csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
         if ( weekday_name == 'sobota' ):
             csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
-
-    # if ( _DBG0_ ): print( dict_calendar )
 
     return dict_calendar
 
