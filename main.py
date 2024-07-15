@@ -172,7 +172,7 @@ if ( __name__ == '__main__' ):
     # wpisz_pt( month, year )
     # wpisz_sob( month, year )
 
-    template = generate_month_template( month, year )
+    template = generate_month_template( 8, 2024 )
     # print( template )
 
     test_func()
