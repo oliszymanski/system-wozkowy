@@ -9,6 +9,7 @@ O.K i S.
 Park od strony mostku
 7:00,-,-,-,-
 8:00,-,-,-,-
+
 '''
 
 day_czwartek = '''
@@ -22,6 +23,7 @@ Bazarek od strony parku - przy zejściu na perony
 14:00,-,-,-,-
 15:00,-,-,-,-
 16:00,-,-,-,-
+
 '''
 
 day_piatek = '''
@@ -32,6 +34,7 @@ Park od strony mostku
 Kolejowa API
 17:00,-,-,-,-
 18:30,-,-,-,-
+
 '''
 
 day_sobota = '''
@@ -51,4 +54,5 @@ Skwer na przeciwko żabki (koło tunelu)
 Kolejowa API
 12:00,-,-,-,-
 13:00,-,-,-,-
+
 '''
