@@ -29,7 +29,7 @@ dict_days = {
 }
 
 
-csv_file_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )     # csv
+csv_file_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )
 csv_file_writer = open( 'grafik.csv', 'w', newline='' )
 
 
