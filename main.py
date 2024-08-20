@@ -28,6 +28,8 @@ dict_days = {
     'sobota':'Saturday'
 }
 
+ls_weekdays = list( dict_days.keys() )
+
 
 csv_file_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )
 csv_file_writer = open( 'grafik.csv', 'w', newline='' )
@@ -39,10 +41,9 @@ csv_file_writer = open( 'grafik.csv', 'w', newline='' )
 #	FUNCTIONS:
 #=======================================================
 
-def generate_month_template( month, year ):
+def generate_month_template( ls_weekdays : list, month : int, year : int ):
 
     dict_calendar = {}
-    ls_weekdays = [ 'wtorek', 'czwartek', 'piątek', 'sobota' ]
 
     for weekday_name in ls_weekdays:
         weekday = list( calendar.day_name ).index( dict_days[ weekday_name ] )
@@ -73,6 +74,11 @@ def generate_month_template( month, year ):
 
     return dict_calendar
 
+
+
+def add_people( grafik, ls_dyspozycyjnosc : str ):
+
+    return
 
 
 def test_func():
@@ -170,7 +176,7 @@ if ( __name__ == '__main__' ):
     # wpisz_pt( month, year )
     # wpisz_sob( month, year )
 
-    template = generate_month_template( 8, 2024 )
+    template = generate_month_template( ls_weekdays, 8, 2024 )
     # print( template )
 
     test_func()
