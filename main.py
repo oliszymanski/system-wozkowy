@@ -43,7 +43,7 @@ csv_dyspozycyjnosc_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )
 #	FUNCTIONS:
 #=======================================================
 
-def assign_people( grafik_read, grafik_write, dyspozycyjnosc, view_result=True ):
+def assign_people( grafik_read, grafik_write, dyspozycyjnosc, weekdays : list, view_result=False ):
 
     # if (_DBG0_):
     #     for row in dyspozycyjnosc:
@@ -53,14 +53,13 @@ def assign_people( grafik_read, grafik_write, dyspozycyjnosc, view_result=True )
 
     if ( view_result ):
         for row in grafik_read:
-            print( row, '\n' )
+            print( row )
+
+    for row in grafik_read:
+        if ( any( day in row[ 'godzina dyżuru' ] for day in weekdays ) ):
+            print( f'row = { row }' )
 
     return None
-
-
-
-
-
 
 
 
@@ -134,6 +133,7 @@ def test_func():
     return
 
 
+
 #=======================================================
 #	TESTING
 #=======================================================
@@ -141,7 +141,7 @@ def test_func():
 if ( __name__ == '__main__' ):
     template = generate_month_template( 'grafik.csv', ls_weekdays, month, year, display_result=False )
 
-    assign_people( csv_grafik_reader, csv_grafik_writer, csv_dyspozycyjnosc_reader )
+    assign_people( csv_grafik_reader, csv_grafik_writer, csv_dyspozycyjnosc_reader, ls_weekdays )
 
     # person_availability = get_person_availability( csv_dyspozycyjnosc_reader )
 
