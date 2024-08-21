@@ -1,5 +1,4 @@
-header = '''
-godzina dyżuru,głosiciel 1,głosiciel 2,zastępstwo 1,zastępstwo 2
+header = '''godzina dyżuru,głosiciel 1,głosiciel 2,zastępstwo 1,zastępstwo 2
 '''
 day_wtorek = '''
 O.K i S.
