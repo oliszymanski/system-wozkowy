@@ -3,7 +3,7 @@
 #=======================================================
 
 import io
-import random
+from random import choice
 
 import csv
 import calendar
@@ -59,8 +59,29 @@ def assign_people( grafik_read, grafik_write, dyspozycyjnosc, weekdays : list, v
         if ( any( day in row[ 'godzina dyżuru' ] for day in weekdays ) ):
             print( f'row = { row }' )
 
+
+
     return None
 
+
+
+def assign_people_01( weekday : str, dyspozycyjnosc, view_result=True ):
+    """
+    """
+    
+    csv_col_vals = []
+    dict_filtered_csv_col_vals = {}
+
+    csv_reader = csv.DictReader( open( dyspozycyjnosc, 'r' ) )
+
+    for row in csv_reader:
+        csv_col_vals.append( row[ weekday ] )
+    
+    filtered_csv_col_vals = [  ]
+
+    if ( view_result ): print( csv_col_vals )
+
+    return None
 
 
 # def get_person_availability( dyspozycyjnosc : csv.DictReader, display_result=True ):
@@ -108,10 +129,18 @@ def generate_month_template( template_file: str, ls_weekdays : list, month : int
     for date, weekday_name in dict_calendar.items():
         if ( display_result ): print( f"{ date } - { weekday_name }" )
 
-        if ( weekday_name == 'wtorek' ): csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
-        if ( weekday_name == 'czwartek' ): csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
-        if ( weekday_name == 'piątek' ): csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
-        if ( weekday_name == 'sobota' ): csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
+        if ( weekday_name == 'wtorek' ):
+            csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
+
+
+        if ( weekday_name == 'czwartek' ):
+            csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
+        
+        if ( weekday_name == 'piątek' ):
+            csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
+        
+        if ( weekday_name == 'sobota' ):
+            csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
 
 
         if ( display_result ): print( dict_calendar )
@@ -128,20 +157,22 @@ def test_func():
     for index in ones_indices:
         ls[ index ] = 1
 
-    print( f'new ls:\n{ls}' )
+    print( f'new ls:\n{ ls }' )
 
     return
 
 
 
 #=======================================================
-#	TESTING
+#	TESTING:
 #=======================================================
 
 if ( __name__ == '__main__' ):
     template = generate_month_template( 'grafik.csv', ls_weekdays, month, year, display_result=False )
 
-    assign_people( csv_grafik_reader, csv_grafik_writer, csv_dyspozycyjnosc_reader, ls_weekdays )
+    # assign_people( csv_grafik_reader, csv_grafik_writer, csv_dyspozycyjnosc_reader, ls_weekdays )
+
+    assign_people_01( 'wtorek', 'dyspozycyjnosc.csv' )
 
     # person_availability = get_person_availability( csv_dyspozycyjnosc_reader )
 
