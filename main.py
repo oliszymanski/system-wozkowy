@@ -85,26 +85,6 @@ def assign_people_01( weekday : str, dyspozycyjnosc, view_result=True ):
     return None
 
 
-# def get_person_availability( dyspozycyjnosc : csv.DictReader, display_result=True ):
-
-#     """
-#     """
-
-#     person_availability = {}
-
-#     for row in dyspozycyjnosc:
-#         person_name = row['imię i nazwisko']
-#         person_availability[ person_name ] = {}
-
-#         for weekday_name in ls_weekdays:
-#             person_availability[ person_name ][ weekday_name ] = {}
-
-
-#     if ( display_result ): print( person_availability )
-
-#     return person_availability
-
-
 
 def generate_month_template( template_file: str, ls_weekdays : list, month : int, year : int, display_result=True ):
 
@@ -170,21 +150,50 @@ def generate_month_template( template_file: str, ls_weekdays : list, month : int
 
 
 
-def test_func( weekday: str, start_line: int, reader_file: str, dyspozycyjnosc: csv.DictReader ):
-    """
-    """
+
+
+
+
+
+def test_func( weekday: str, start_line: int, reader_file: str, dyspozycyjnosc: str ):
     
-    reader = csv.reader( open( reader_file, 'r', newline='' ) )
+    reader = csv.reader( open( reader_file, 'r' ) )
+    csv_dyspozycyjnosc = csv.DictReader( open( dyspozycyjnosc, 'r' ) )
+
     rows = list( reader )
 
-    if ( start_line < len( rows ) ):
+
+    if (_DBG0_):
+        ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( '7:30' in disposal_row[ weekday ] ) ]
+        print( f'ls_matching_disposal_rows: {ls_matching_disposal_rows}' )
+
+
+    if ( start_line < len( rows ) ): 
         for i in range( start_line, len( rows ) ):
-            if ( len(rows[ i ]) >= 2 ):
-                if ( rows[i][1] == '-' ):       # check for głosiciel 1
-                    print( rows[i][0] )
-                
-                if ( rows[i][2] == '-' ):       # check for głosiciel 2
-                    print( rows[i][0] )
+
+            if ( len( rows[ i ] ) == 3 ):
+                print( f'rows 0: { rows[i][0] }' )
+
+                csv_dyspozycyjnosc = csv.DictReader( open( dyspozycyjnosc, 'r' ) )
+                ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( rows[i][0] in disposal_row[ weekday ] ) ]
+
+                if (ls_matching_disposal_rows):
+                    st_assigned_people = set()
+
+                    name_01 = choice(ls_matching_disposal_rows)['imię i nazwisko']
+                    rows[i][1] = name_01
+                    st_assigned_people.add( name_01 )
+                    print( rows[i][1] )
+
+                    available_names = [ row['imię i nazwisko'] for row in ls_matching_disposal_rows if ( row['imię i nazwisko'] not in st_assigned_people ) ]
+                    
+                    if ( available_names ):
+                        name_02 = choice( available_names )
+                        rows[i][2] = name_02
+                        print( rows[i][2] )
+
+                    else: print( 'No available names' )
+
 
     return
 
@@ -195,18 +204,8 @@ def test_func( weekday: str, start_line: int, reader_file: str, dyspozycyjnosc: 
 #=======================================================
 
 if ( __name__ == '__main__' ):
-    template = generate_month_template( 'grafik.csv', ls_weekdays, month, year, display_result=True )
-
-    test_func( weekday='sobota', start_line=202, reader_file='grafik.csv', dyspozycyjnosc=csv_dyspozycyjnosc_reader )
-
-    # assign_people_01( 'wtorek', 'dyspozycyjnosc.csv' )
-
-    # person_availability = get_person_availability( csv_dyspozycyjnosc_reader )
-
-    # for row in csv_grafik_writer:
-    #     print( row )
-
-    # print( dir( csv.DictReader ) )
+    template = generate_month_template( 'grafik.csv', ls_weekdays, month, year, display_result=False )
+    test_func( 'sobota', 202, 'grafik.csv', 'dyspozycyjnosc.csv' )
 
 
 
