@@ -29,7 +29,7 @@ dict_days = {
     'sobota':'Saturday'
 }
 
-ls_fieldnames = [ 'godzina dyżuru', 'głosiciel 1', 'głosiciel 2', 'zastępstwo 1', 'zastępstwo 2' ]
+ls_fieldnames = [ 'godzina dyżuru', 'głosiciel 1', 'głosiciel 2' ]
 
 ls_weekdays = list( dict_days.keys() )
 
@@ -44,12 +44,6 @@ csv_dyspozycyjnosc_reader = csv.DictReader( open('dyspozycyjnosc.csv', 'r') )
 #=======================================================
 
 def assign_people( grafik_read, grafik_write, dyspozycyjnosc, weekdays : list, view_result=False ):
-
-    # if (_DBG0_):
-    #     for row in dyspozycyjnosc:
-    #         print( row, '\n' )
-
-
 
     if ( view_result ):
         for row in grafik_read:
@@ -67,6 +61,13 @@ def assign_people( grafik_read, grafik_write, dyspozycyjnosc, weekdays : list, v
 
 def assign_people_01( weekday : str, dyspozycyjnosc, view_result=True ):
     """
+    input:
+        weekday:            day of the week,
+        dyspozycyjnosc:     list of people and their availability;
+
+    output:
+        
+
     """
     
     csv_col_vals = []
@@ -107,6 +108,17 @@ def assign_people_01( weekday : str, dyspozycyjnosc, view_result=True ):
 
 def generate_month_template( template_file: str, ls_weekdays : list, month : int, year : int, display_result=True ):
 
+    """
+    input:
+        template_file:      .csv file for schedule,
+        ls_weekdays:        list of weekdays with templates,
+        month:              month number,
+        year:               year number;
+
+    output:
+        dict_calendar:      dictionary with dates and weekdays;
+    """
+
     dict_calendar = {}
 
     for weekday_name in ls_weekdays:
@@ -120,8 +132,9 @@ def generate_month_template( template_file: str, ls_weekdays : list, month : int
 
 
     dict_calendar = dict( sorted( dict_calendar.items(), key=lambda x: tuple(map(int, x[0].split('/'))) ) ) # sorting by date
-    
     csv_file_writer = open( template_file, 'w', newline='' )
+
+    line_number_counter = 1
 
     csv_file_writer.truncate()
     csv_file_writer.write( templates.header )
@@ -129,35 +142,49 @@ def generate_month_template( template_file: str, ls_weekdays : list, month : int
     for date, weekday_name in dict_calendar.items():
         if ( display_result ): print( f"{ date } - { weekday_name }" )
 
+
         if ( weekday_name == 'wtorek' ):
             csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
-
+            line_number_counter += len( templates.day_wtorek.splitlines() ) + 1
 
         if ( weekday_name == 'czwartek' ):
             csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
+            line_number_counter += len( templates.day_czwartek.splitlines() ) + 1
         
         if ( weekday_name == 'piątek' ):
             csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
+            line_number_counter += len( templates.day_piatek.splitlines() ) + 1
         
         if ( weekday_name == 'sobota' ):
             csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
+            line_number_counter += len( templates.day_sobota.splitlines() ) + 1
+
+        if ( display_result ):
+            print( f'{dict_calendar}' )
 
 
-        if ( display_result ): print( dict_calendar )
+    if ( display_result ): print(f'number of lines in file: { line_number_counter }')
+
 
     return dict_calendar
 
 
 
-def test_func():
-    ls = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+def test_func( weekday: str, start_line: int, reader_file: str, dyspozycyjnosc: csv.DictReader ):
+    """
+    """
+    
+    reader = csv.reader( open( reader_file, 'r', newline='' ) )
+    rows = list( reader )
 
-    ones_indices = random.sample( range( len(ls) ), 5 )
-
-    for index in ones_indices:
-        ls[ index ] = 1
-
-    print( f'new ls:\n{ ls }' )
+    if ( start_line < len( rows ) ):
+        for i in range( start_line, len( rows ) ):
+            if ( len(rows[ i ]) >= 2 ):
+                if ( rows[i][1] == '-' ):       # check for głosiciel 1
+                    print( rows[i][0] )
+                
+                if ( rows[i][2] == '-' ):       # check for głosiciel 2
+                    print( rows[i][0] )
 
     return
 
@@ -168,11 +195,11 @@ def test_func():
 #=======================================================
 
 if ( __name__ == '__main__' ):
-    template = generate_month_template( 'grafik.csv', ls_weekdays, month, year, display_result=False )
+    template = generate_month_template( 'grafik.csv', ls_weekdays, month, year, display_result=True )
 
-    # assign_people( csv_grafik_reader, csv_grafik_writer, csv_dyspozycyjnosc_reader, ls_weekdays )
+    test_func( weekday='sobota', start_line=202, reader_file='grafik.csv', dyspozycyjnosc=csv_dyspozycyjnosc_reader )
 
-    assign_people_01( 'wtorek', 'dyspozycyjnosc.csv' )
+    # assign_people_01( 'wtorek', 'dyspozycyjnosc.csv' )
 
     # person_availability = get_person_availability( csv_dyspozycyjnosc_reader )
 
