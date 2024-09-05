@@ -43,3 +43,9 @@ class Schedule:
                     entry = Schedule_entry(shift_start_time, place)
                     self.entries.append(entry)
             current_date = current_date + timedelta(days=1)
+    
+    def get_entries(self):
+        '''
+        Returns entries
+        '''
+        return self.entries

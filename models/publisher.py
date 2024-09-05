@@ -18,10 +18,12 @@ class Publisher:
     def add_availability(self, weekday, shift_time):
         self.availability[weekday].append(shift_time)
 
-
     def priority_for_shift(self, shift):
         # TODO: priority calculation
-        return self.priority_global
+        priority = self.priority_global
+        priority = (priority if self.is_available(shift.start_time) else 0)
+
+        return priority
 
     def is_available(self, start_time):
         weekday = start_time.weekday()
