@@ -10,6 +10,7 @@ class Schedule_entry:
 
     def add_publisher(self, pub):
         self.publishers.add(pub)
+        pub.shifts.add(self)
 
     def csv_results(self):
         # Return results for csv

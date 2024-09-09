@@ -52,6 +52,10 @@ if ( __name__ == '__main__' ):
     irwina.add_availability(4, time(18,0))
 
     publishers = [marian, karol, marlena, irwina]
+
+    priority_sum = sum(p.priority_global for p in publishers)
+    Publisher.priority_cost = priority_sum / (len(s.entries) * 2)
+
     assign_shifts(s, publishers)
 
     for entry in s.entries:
