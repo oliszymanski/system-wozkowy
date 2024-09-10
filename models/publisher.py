@@ -9,7 +9,7 @@ class Publisher:
         self.name = name
         self.kind = kind
         self.priority_global = self.priority_for_kind[kind]
-        self.priority_daily = [self.priority_global] * 31
+        self.priority_daily = [1] * 31
         self.related_publishers = []
         self.availability = {
             0:[],1:[],2:[],3:[],4:[],5:[],6:[]
@@ -25,12 +25,25 @@ class Publisher:
         if not self.is_available(shift.start_time):
             return 0
         
+        # set global priority
         priority = self.priority_global
+        # reduce priority based on the number of shifts self has
         priority -= (len(self.shifts) * self.priority_cost)
-        return max(priority, 0.05)
+        # set minimal priority after reducing
+        priority = max(priority, 0.01)
+        # Disallow multiple shifts per day
+        priority *= self.priority_daily[shift.start_time.day - 1]
+        
+        return priority
 
     def is_available(self, start_time):
         weekday = start_time.weekday()
         available_times = self.availability[weekday]
         time = start_time.time()
         return time in available_times
+
+    def add_shift(self, shift):
+        self.shifts.add(shift)
+        # Disallow multiple shifts per day
+        day = shift.start_time.day
+        self.priority_daily[day - 1] = 0
