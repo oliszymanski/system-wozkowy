@@ -100,6 +100,7 @@ class AssignPublishers():
             
             if ( weekday_name == 'piątek' ):
                 csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
+                self.assign_people( 'piątek', line_number_counter )
                 line_number_counter += len( templates.day_piatek.splitlines() ) + 1
             
             if ( weekday_name == 'sobota' ):
@@ -121,7 +122,8 @@ class AssignPublishers():
     
         '''
         input:
-
+            weekday:        day of the week,
+            start_line:     where to start typing in;
 
         output:
 
@@ -143,7 +145,7 @@ class AssignPublishers():
             for i in range( start_line, len( rows ) ):
 
                 if ( len( rows[ i ] ) == 3 ):
-                    print( f'rows 0: { rows[ i ][ 0 ] }' )
+                    print( f'row 0: { rows[ i ][ 0 ] }' )
 
                     csv_dyspozycyjnosc = csv.DictReader( open( self.dyspozycyjnosc, 'r' ) )
                     ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( rows[i][0] in disposal_row[ weekday ] ) ]
@@ -155,7 +157,7 @@ class AssignPublishers():
                         name_01 = choice( ls_matching_disposal_rows )[ 'imię i nazwisko' ]
                         rows[ i ][ 1 ] = name_01
                         st_assigned_people.add( name_01 )
-                        print( rows[ i ][ 1 ] )
+                        print( f'publisher 1: { rows[ i ][ 1 ] }' )
 
                         available_names = [ row['imię i nazwisko'] for row in ls_matching_disposal_rows if ( row['imię i nazwisko'] not in st_assigned_people ) ]
                         
@@ -163,7 +165,7 @@ class AssignPublishers():
                         if ( available_names ):
                             name_02 = choice( available_names )
                             rows[ i ][ 2 ] = name_02
-                            print( rows[ i ][ 2 ] )
+                            print( f'publisher 2: {rows[ i ][ 2 ]}' )
 
                         else: print( 'No available names' )
 
