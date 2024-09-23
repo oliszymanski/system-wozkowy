@@ -16,7 +16,7 @@ import templates
 #	GLOBALS:
 #=======================================================
 
-_DBG0_ = False                               # debuggers
+_DBG0_ = False
 _DBG1_ = True
 
 month = 9                                   
@@ -157,7 +157,7 @@ class AssignPublishers():
                         name_01 = choice( ls_matching_disposal_rows )[ 'imię i nazwisko' ]
                         rows[ i ][ 1 ] = name_01
                         st_assigned_people.add( name_01 )
-                        print( f'publisher 1: { rows[ i ][ 1 ] }' )
+                        print( f'first publisher: { rows[ i ][ 1 ] }' )
 
                         available_names = [ row['imię i nazwisko'] for row in ls_matching_disposal_rows if ( row['imię i nazwisko'] not in st_assigned_people ) ]
                         
@@ -165,21 +165,9 @@ class AssignPublishers():
                         if ( available_names ):
                             name_02 = choice( available_names )
                             rows[ i ][ 2 ] = name_02
-                            print( f'publisher 2: {rows[ i ][ 2 ]}' )
+                            print( f'second publisher: {rows[ i ][ 2 ]}' )
 
                         else: print( 'No available names' )
 
 
         return None
-
-
-
-#=======================================================
-#	TESTING:
-#=======================================================
-
-if ( __name__ == '__main__' ):
-    assigning = AssignPublishers( 'grafik.csv', 'dyspozycyjnosc.csv', month, year )
-    
-    assigning.generate_month_template( ls_weekdays )
-    assigning.assign_people( 'sobota', 202  )
