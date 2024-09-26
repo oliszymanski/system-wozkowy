@@ -57,7 +57,7 @@ class AssignPublishers():
 
     
     
-    def generate_month_template( self, ls_weekdays : list, display_result=True ):
+    def generate_month_schedule( self, ls_weekdays : list, display_result=True ):
 
         """
         input:
@@ -92,19 +92,22 @@ class AssignPublishers():
 
             if ( weekday_name == 'wtorek' ):
                 csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
+                self.assign_people( csv_file_writer, 'wtorek', line_number_counter )
                 line_number_counter += len( templates.day_wtorek.splitlines() ) + 1
 
             if ( weekday_name == 'czwartek' ):
                 csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
+                self.assign_people( csv_file_writer, 'czwartek', line_number_counter )
                 line_number_counter += len( templates.day_czwartek.splitlines() ) + 1
             
             if ( weekday_name == 'piątek' ):
                 csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
-                self.assign_people( 'piątek', line_number_counter )
+                self.assign_people( csv_file_writer, 'piątek', line_number_counter )
                 line_number_counter += len( templates.day_piatek.splitlines() ) + 1
             
             if ( weekday_name == 'sobota' ):
                 csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
+                self.assign_people( csv_file_writer, 'sobota', line_number_counter )
                 line_number_counter += len( templates.day_sobota.splitlines() ) + 1
 
         if ( display_result ):
@@ -118,7 +121,7 @@ class AssignPublishers():
 
 
 
-    def assign_people( self, weekday: str, start_line: int ):
+    def assign_people( self, writer, weekday: str, start_line: int ):
     
         '''
         input:
@@ -131,9 +134,10 @@ class AssignPublishers():
 
 
         reader = csv.reader( open( self.grafik, 'r' ) )
+
         csv_dyspozycyjnosc = csv.DictReader( open( self.dyspozycyjnosc, 'r' ) )
 
-        rows = list( reader )
+        read_rows = list( reader )
 
 
         if ( _DBG0_ ):
@@ -141,33 +145,37 @@ class AssignPublishers():
             print( f'ls_matching_disposal_rows: { ls_matching_disposal_rows }' )
 
 
-        if ( start_line < len( rows ) ): 
-            for i in range( start_line, len( rows ) ):
+        if ( start_line < len( read_rows ) ): 
+            for i in range( start_line, len( read_rows ) ):
 
-                if ( len( rows[ i ] ) == 3 ):
-                    print( f'row 0: { rows[ i ][ 0 ] }' )
+                if ( len( read_rows[ i ] ) == 3 ):
+                    print( f'row 0: { read_rows[ i ][ 0 ] }' )
 
                     csv_dyspozycyjnosc = csv.DictReader( open( self.dyspozycyjnosc, 'r' ) )
-                    ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( rows[i][0] in disposal_row[ weekday ] ) ]
+                    ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( read_rows[i][0] in disposal_row[ weekday ] ) ]
 
                     if (ls_matching_disposal_rows):
                         st_assigned_people = set()
 
                         # first publisher
                         name_01 = choice( ls_matching_disposal_rows )[ 'imię i nazwisko' ]
-                        rows[ i ][ 1 ] = name_01
+                        read_rows[ i ][ 1 ] = name_01
                         st_assigned_people.add( name_01 )
-                        print( f'first publisher: { rows[ i ][ 1 ] }' )
+                        print( f'first publisher: { read_rows[ i ][ 1 ] }' )
 
                         available_names = [ row['imię i nazwisko'] for row in ls_matching_disposal_rows if ( row['imię i nazwisko'] not in st_assigned_people ) ]
                         
                         # second publisher
                         if ( available_names ):
                             name_02 = choice( available_names )
-                            rows[ i ][ 2 ] = name_02
-                            print( f'second publisher: {rows[ i ][ 2 ]}' )
+                            read_rows[ i ][ 2 ] = name_02
+                            print( f'second publisher: {read_rows[ i ][ 2 ]}' )
+
+                            csv_writer = csv.writer( open( self.grafik, 'w', newline='' ) )
+                            csv_writer.writerows( read_rows )
 
                         else: print( 'No available names' )
-
+                    
+                    print( 'written data rows' )
 
         return None
