@@ -23,4 +23,5 @@ ls_weekdays = [ 'wtorek', 'czwartek', 'piątek', 'sobota' ]
 if ( __name__ == '__main__' ):
     assign_pub = assign.AssignPublishers( 'grafik.csv', 'dyspozycyjnosc.csv', month, year )
     assign_pub.generate_month_schedule( ls_weekdays )
+    
     # assign_pub.assign_people( 'sobota', 202 )
