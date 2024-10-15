@@ -69,6 +69,8 @@ class AssignPublishers():
 
         dict_calendar = {}
 
+        year = self.year
+
         for weekday_name in ls_weekdays:
             weekday = list( calendar.day_name ).index( dict_days[ weekday_name ] )
             cal = calendar.monthcalendar( year, self.month )
@@ -78,50 +80,48 @@ class AssignPublishers():
                     day = week[ weekday ]
                     dict_calendar[f"{ day }/{ self.month }/{ year }"] = weekday_name
 
-
         dict_calendar = dict( sorted( dict_calendar.items(), key=lambda x: tuple(map(int, x[0].split('/'))) ) ) # sorting by date
-        csv_file_writer = open( self.grafik, 'w', newline='' )
+        
+        with open( self.grafik, 'w', newline='' ) as csv_file_writer:
+            line_number_counter = 1
+            csv_file_writer.truncate()
+            csv_file_writer.write( templates.header )
 
-        line_number_counter = 1
+            for date, weekday_name in dict_calendar.items():
+                if ( display_result ): print( f"{ date } - { weekday_name }" )
 
-        csv_file_writer.truncate()
-        csv_file_writer.write( templates.header )
+                if ( weekday_name == 'wtorek' ):
+                    csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
+                    self.assign_people( self.grafik, 'wtorek', line_number_counter )
+                    line_number_counter += len( templates.day_wtorek.splitlines() ) + 1
 
-        for date, weekday_name in dict_calendar.items():
-            if ( display_result ): print( f"{ date } - { weekday_name }" )
+                if ( weekday_name == 'czwartek' ):
+                    csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
+                    self.assign_people( self.grafik, 'czwartek', line_number_counter )
+                    line_number_counter += len( templates.day_czwartek.splitlines() ) + 1
+                
+                if ( weekday_name == 'piątek' ):
+                    csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
+                    self.assign_people( self.grafik, 'piątek', line_number_counter )
+                    line_number_counter += len( templates.day_piatek.splitlines() ) + 1
+                
+                if ( weekday_name == 'sobota' ):
+                    csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
+                    self.assign_people( self.grafik, 'sobota', line_number_counter )
+                    line_number_counter += len( templates.day_sobota.splitlines() ) + 1
 
-            if ( weekday_name == 'wtorek' ):
-                csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
-                self.assign_people( csv_file_writer, 'wtorek', line_number_counter )
-                line_number_counter += len( templates.day_wtorek.splitlines() ) + 1
-
-            if ( weekday_name == 'czwartek' ):
-                csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
-                # self.assign_people( csv_file_writer, 'czwartek', line_number_counter )
-                line_number_counter += len( templates.day_czwartek.splitlines() ) + 1
-            
-            if ( weekday_name == 'piątek' ):
-                csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
-                # self.assign_people( csv_file_writer, 'piątek', line_number_counter )
-                line_number_counter += len( templates.day_piatek.splitlines() ) + 1
-            
-            if ( weekday_name == 'sobota' ):
-                csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
-                # self.assign_people( csv_file_writer, 'sobota', line_number_counter )
-                line_number_counter += len( templates.day_sobota.splitlines() ) + 1
-
-        if ( display_result ):
-            print( f'{ dict_calendar }' )
-
-
-        if ( display_result ): print( f'number of lines in file: { line_number_counter }')
+            if ( display_result ):
+                print( f'{ dict_calendar }' )
 
 
-        return dict_calendar
+            if ( display_result ): print( f'number of lines in file: { line_number_counter }')
+
+
+            return dict_calendar
 
 
 
-    def assign_people( self, writer, weekday: str, start_line: int ):
+    def assign_people( self, filename: str, weekday: str, start_line: int ):
     
         '''
         input:
@@ -133,12 +133,14 @@ class AssignPublishers():
         '''
 
         print( 'assign_people function called' )
+        print(f"Processing weekday: {weekday}, starting at line: {start_line}")
 
-        reader = csv.reader( open( self.grafik, 'r' ) )
+        with open( self.grafik, 'r' ) as grafik_file:
+            reader = csv.reader( grafik_file )
+            read_rows = list( reader )
 
-        csv_dyspozycyjnosc = csv.DictReader( open( self.dyspozycyjnosc, 'r' ) )
-
-        read_rows = list( reader )
+        with open( self.dyspozycyjnosc, 'r' ) as dyspozycyjnosc_file:
+            csv_dyspozycyjnosc = csv.DictReader( dyspozycyjnosc_file )
 
 
         if ( _DBG0_ ):
@@ -152,10 +154,11 @@ class AssignPublishers():
                 if ( len( read_rows[ i ] ) == 3 ):
                     print( f'row 0: { read_rows[ i ][ 0 ] }' )
 
-                    csv_dyspozycyjnosc = csv.DictReader( open( self.dyspozycyjnosc, 'r' ) )
-                    ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( read_rows[i][0] in disposal_row[ weekday ] ) ]
+                    with open( self.dyspozycyjnosc, 'r' ):
+                        csv_dyspozycyjnosc = csv.DictReader( open( self.dyspozycyjnosc, 'r' ) )
+                        ls_matching_disposal_rows = [ disposal_row for disposal_row in csv_dyspozycyjnosc if ( read_rows[i][0] in disposal_row[ weekday ] ) ]
 
-                    if (ls_matching_disposal_rows):
+                    if ( ls_matching_disposal_rows ):
                         st_assigned_people = set()
 
                         # first publisher
@@ -172,8 +175,13 @@ class AssignPublishers():
                             read_rows[ i ][ 2 ] = name_02
                             if (_DBG1_): print( f'second publisher: {read_rows[ i ][ 2 ]}' )
 
-                            csv_writer = csv.writer( open( writer, 'w', newline='' ) )
-                            csv_writer.writerows( read_rows )
+                            try:
+                                with open( filename, 'w', newline='' ) as csv_file_writer:
+                                    csv_writer = csv.writer( csv_file_writer )
+                                    csv_writer.writerows( read_rows )
+
+                            except Exception as e:
+                                print(f'error writing to file: {e}')
 
                         else: print( 'No available names' )
                     

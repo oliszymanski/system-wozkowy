@@ -1,28 +1,5 @@
 godzina dyżuru,głosiciel 1,głosiciel 2
-wtorek 3/9/2024
-
-O.K i S.
-7:00,-,-
-8:00,-,-
-
-Park od strony mostku
-7:00,-,-
-8:00,-,-
-
-czwartek 5/9/2024
-
-O.K i S.
-7:00,-,-
-8:00,-,-
-
-Bazarek od strony parku - przy zejściu na perony
-12:00,-,-
-13:00,-,-
-14:00,-,-
-15:00,-,-
-16:00,-,-
-
-piątek 6/9/2024
+piątek 1/11/2024
 
 Park od strony mostku
 7:00,-,-
@@ -32,7 +9,7 @@ Kolejowa API
 17:00,-,-
 18:30,-,-
 
-sobota 7/9/2024
+sobota 2/11/2024
 
 Park od strony bazarku
 7:30,-,-
@@ -51,7 +28,7 @@ Kolejowa API
 12:00,-,-
 13:00,-,-
 
-wtorek 10/9/2024
+wtorek 5/11/2024
 
 O.K i S.
 7:00,-,-
@@ -61,7 +38,7 @@ Park od strony mostku
 7:00,-,-
 8:00,-,-
 
-czwartek 12/9/2024
+czwartek 7/11/2024
 
 O.K i S.
 7:00,-,-
@@ -74,7 +51,7 @@ Bazarek od strony parku - przy zejściu na perony
 15:00,-,-
 16:00,-,-
 
-piątek 13/9/2024
+piątek 8/11/2024
 
 Park od strony mostku
 7:00,-,-
@@ -84,7 +61,7 @@ Kolejowa API
 17:00,-,-
 18:30,-,-
 
-sobota 14/9/2024
+sobota 9/11/2024
 
 Park od strony bazarku
 7:30,-,-
@@ -103,7 +80,7 @@ Kolejowa API
 12:00,-,-
 13:00,-,-
 
-wtorek 17/9/2024
+wtorek 12/11/2024
 
 O.K i S.
 7:00,-,-
@@ -113,7 +90,7 @@ Park od strony mostku
 7:00,-,-
 8:00,-,-
 
-czwartek 19/9/2024
+czwartek 14/11/2024
 
 O.K i S.
 7:00,-,-
@@ -126,7 +103,7 @@ Bazarek od strony parku - przy zejściu na perony
 15:00,-,-
 16:00,-,-
 
-piątek 20/9/2024
+piątek 15/11/2024
 
 Park od strony mostku
 7:00,-,-
@@ -136,7 +113,7 @@ Kolejowa API
 17:00,-,-
 18:30,-,-
 
-sobota 21/9/2024
+sobota 16/11/2024
 
 Park od strony bazarku
 7:30,-,-
@@ -155,7 +132,7 @@ Kolejowa API
 12:00,-,-
 13:00,-,-
 
-wtorek 24/9/2024
+wtorek 19/11/2024
 
 O.K i S.
 7:00,-,-
@@ -165,7 +142,7 @@ Park od strony mostku
 7:00,-,-
 8:00,-,-
 
-czwartek 26/9/2024
+czwartek 21/11/2024
 
 O.K i S.
 7:00,-,-
@@ -178,7 +155,7 @@ Bazarek od strony parku - przy zejściu na perony
 15:00,-,-
 16:00,-,-
 
-piątek 27/9/2024
+piątek 22/11/2024
 
 Park od strony mostku
 7:00,-,-
@@ -188,7 +165,7 @@ Kolejowa API
 17:00,-,-
 18:30,-,-
 
-sobota 28/9/2024
+sobota 23/11/2024
 
 Park od strony bazarku
 7:30,-,-
@@ -206,4 +183,56 @@ Skwer na przeciwko żabki (koło tunelu)
 Kolejowa API
 12:00,-,-
 13:00,-,-
+
+wtorek 26/11/2024
+
+O.K i S.
+7:00,-,-
+8:00,-,-
+
+Park od strony mostku
+7:00,-,-
+8:00,-,-
+
+czwartek 28/11/2024
+
+O.K i S.
+7:00,-,-
+8:00,-,-
+
+Bazarek od strony parku - przy zejściu na perony
+12:00,-,-
+13:00,-,-
+14:00,-,-
+15:00,-,-
+16:00,-,-
+
+piątek 29/11/2024
+
+Park od strony mostku
+7:00,-,-
+8:00,-,-
+
+Kolejowa API
+17:00,-,-
+18:30,-,-
+
+sobota 30/11/2024
+
+Park od strony bazarku
+7:30,o p,g h
+8:30,s t,g h
+9:30,c d,k l
+10:30,o p,m n
+11:30,s t,-
+12:30,-,-
+13:30,-,-
+
+Skwer na przeciwko żabki (koło tunelu)
+7:30,o p,g h
+8:30,a b,g h
+
+Kolejowa API
+12:00,c d,w x
+13:00,u v,y z
 
