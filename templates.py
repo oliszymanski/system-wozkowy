@@ -32,7 +32,7 @@ Park od strony mostku
 
 Kolejowa API
 17:00,-,-
-18:30,-,-
+18:00,-,-
 
 '''
 
