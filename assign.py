@@ -92,7 +92,7 @@ class AssignPublishers():
 
                 if ( weekday_name == 'wtorek' ):
                     csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
-                    self.assign_people( self.grafik, 'wtorek', line_number_counter )
+                    self.assign_people( self.grafik, 'wtorek', line_number_counter ) # not working
                     line_number_counter += len( templates.day_wtorek.splitlines() ) + 1
 
                 if ( weekday_name == 'czwartek' ):
@@ -149,6 +149,7 @@ class AssignPublishers():
 
 
         if ( start_line < len( read_rows ) ): 
+            print( 'assiging people' )
             for i in range( start_line, len( read_rows ) ):
 
                 if ( len( read_rows[ i ] ) == 3 ):
@@ -188,3 +189,23 @@ class AssignPublishers():
                     print( 'written data rows' )
 
         return None
+
+
+
+    def assign_people_to_schedue( self, start_line : int ):
+        
+        with open( self.grafik, 'r' ) as grafik_file:
+            reader = csv.reader( grafik_file )
+            read_rows = list( reader )
+
+        with open( self.dyspozycyjnosc, 'r' ) as dyspozycyjnosc_file:
+            csv_dyspozycyjnosc = csv.DictReader( dyspozycyjnosc_file )
+
+
+        if ( start_line < len( read_rows ) ): 
+            for i in range( start_line, len( read_rows ) ):
+
+                if ( (len( read_rows[ i ] ) == 1) and ( 'sobota' in read_rows[i][0] ) ):
+                    print( f'row 0: { read_rows[ i ][ 0 ] }' )
+
+        return
