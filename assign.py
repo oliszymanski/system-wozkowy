@@ -92,27 +92,18 @@ class AssignPublishers():
 
                 if ( weekday_name == 'wtorek' ):
                     csv_file_writer.write( f'wtorek { date }\n' + templates.day_wtorek )
-                    self.assign_people( self.grafik, 'wtorek', line_number_counter ) # not working
-                    line_number_counter += len( templates.day_wtorek.splitlines() ) + 1
-
+                    
                 if ( weekday_name == 'czwartek' ):
                     csv_file_writer.write( f'czwartek { date }\n' + templates.day_czwartek )
-                    self.assign_people( self.grafik, 'czwartek', line_number_counter )
-                    line_number_counter += len( templates.day_czwartek.splitlines() ) + 1
-                
+                    
                 if ( weekday_name == 'piątek' ):
                     csv_file_writer.write( f'piątek { date }\n' + templates.day_piatek )
-                    self.assign_people( self.grafik, 'piątek', line_number_counter )
-                    line_number_counter += len( templates.day_piatek.splitlines() ) + 1
                 
                 if ( weekday_name == 'sobota' ):
                     csv_file_writer.write( f'sobota { date }\n' + templates.day_sobota )
-                    self.assign_people( self.grafik, 'sobota', line_number_counter )
-                    line_number_counter += len( templates.day_sobota.splitlines() ) + 1
-
+                    
             if ( display_result ):
                 print( f'{ dict_calendar }' )
-
 
             if ( display_result ): print( f'number of lines in file: { line_number_counter }')
 
