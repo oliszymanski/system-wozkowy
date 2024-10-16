@@ -2,226 +2,122 @@ godzina dyżuru,głosiciel 1,głosiciel 2
 piątek 1/11/2024
 
 Park od strony mostku
-7:00,-,-
-8:00,-,-
+7:00,i j,u v
+8:00,y z,i j
 
 Kolejowa API
-17:00,-,-
+17:00,i j,u v
 18:30,-,-
 
 sobota 2/11/2024
 
 Park od strony bazarku
-7:30,-,-
-8:30,-,-
-9:30,-,-
-10:30,-,-
-11:30,-,-
+7:30,g h,o p
+8:30,random twenty-four ,random five 
+9:30,c d,k l
+10:30,m n,o p
+11:30,s t,-
 12:30,-,-
 13:30,-,-
 
 Skwer na przeciwko żabki (koło tunelu)
-7:30,-,-
-8:30,-,-
+7:30,o p,g h
+8:30,random twenty-four ,random eleven 
 
 Kolejowa API
-12:00,-,-
-13:00,-,-
+12:00,w x,c d
+13:00,u v,y z
 
 wtorek 5/11/2024
 
 O.K i S.
-7:00,-,-
-8:00,-,-
+7:00,random twenty-six ,random twelve 
+8:00,random two ,g h
 
 Park od strony mostku
-7:00,-,-
-8:00,-,-
+7:00,random one ,random nine 
+8:00,random twenty-one ,random fifteen 
 
 czwartek 7/11/2024
 
 O.K i S.
-7:00,-,-
-8:00,-,-
+7:00,k l,e f
+8:00,k l,e f
 
 Bazarek od strony parku - przy zejściu na perony
-12:00,-,-
-13:00,-,-
-14:00,-,-
-15:00,-,-
-16:00,-,-
+12:00,random fourteen ,random twenty-three 
+13:00,random twenty-two ,random two 
+14:00,random eleven ,random eighteen 
+15:00,random one ,random six 
+16:00,y z,o p
 
 piątek 8/11/2024
 
 Park od strony mostku
-7:00,-,-
-8:00,-,-
+7:00,g h,u v
+8:00,u v,s t
 
 Kolejowa API
-17:00,-,-
+17:00,u v,k l
 18:30,-,-
 
 sobota 9/11/2024
 
 Park od strony bazarku
-7:30,-,-
-8:30,-,-
-9:30,-,-
-10:30,-,-
-11:30,-,-
+7:30,g h,o p
+8:30,random ten ,random eight 
+9:30,k l,c d
+10:30,o p,m n
+11:30,s t,-
 12:30,-,-
 13:30,-,-
 
 Skwer na przeciwko żabki (koło tunelu)
-7:30,-,-
-8:30,-,-
+7:30,o p,g h
+8:30,random ten ,s t
 
 Kolejowa API
-12:00,-,-
-13:00,-,-
+12:00,w x,u v
+13:00,y z,u v
 
 wtorek 12/11/2024
 
 O.K i S.
-7:00,-,-
-8:00,-,-
+7:00,random fifteen ,random nine 
+8:00,random seven ,random eleven 
 
 Park od strony mostku
-7:00,-,-
-8:00,-,-
+7:00,random four ,random twenty-three 
+8:00,random two ,random twenty-one 
 
 czwartek 14/11/2024
 
 O.K i S.
-7:00,-,-
-8:00,-,-
+7:00,e f,k l
+8:00,e f,k l
 
 Bazarek od strony parku - przy zejściu na perony
-12:00,-,-
-13:00,-,-
-14:00,-,-
-15:00,-,-
-16:00,-,-
+12:00,random fifteen ,random four 
+13:00,random eight ,random twenty-four 
+14:00,random twenty-seven ,random fourteen 
+15:00,random twenty-eight ,random nineteen 
+16:00,y z,o p
 
 piątek 15/11/2024
 
 Park od strony mostku
-7:00,-,-
-8:00,-,-
+7:00,k l,g h
+8:00,k l,i j
 
 Kolejowa API
-17:00,-,-
+17:00,k l,i j
 18:30,-,-
 
 sobota 16/11/2024
 
 Park od strony bazarku
-7:30,-,-
-8:30,-,-
-9:30,-,-
-10:30,-,-
-11:30,-,-
-12:30,-,-
-13:30,-,-
-
-Skwer na przeciwko żabki (koło tunelu)
-7:30,-,-
-8:30,-,-
-
-Kolejowa API
-12:00,-,-
-13:00,-,-
-
-wtorek 19/11/2024
-
-O.K i S.
-7:00,-,-
-8:00,-,-
-
-Park od strony mostku
-7:00,-,-
-8:00,-,-
-
-czwartek 21/11/2024
-
-O.K i S.
-7:00,-,-
-8:00,-,-
-
-Bazarek od strony parku - przy zejściu na perony
-12:00,-,-
-13:00,-,-
-14:00,-,-
-15:00,-,-
-16:00,-,-
-
-piątek 22/11/2024
-
-Park od strony mostku
-7:00,-,-
-8:00,-,-
-
-Kolejowa API
-17:00,-,-
-18:30,-,-
-
-sobota 23/11/2024
-
-Park od strony bazarku
-7:30,-,-
-8:30,-,-
-9:30,-,-
-10:30,-,-
-11:30,-,-
-12:30,-,-
-13:30,-,-
-
-Skwer na przeciwko żabki (koło tunelu)
-7:30,-,-
-8:30,-,-
-
-Kolejowa API
-12:00,-,-
-13:00,-,-
-
-wtorek 26/11/2024
-
-O.K i S.
-7:00,-,-
-8:00,-,-
-
-Park od strony mostku
-7:00,-,-
-8:00,-,-
-
-czwartek 28/11/2024
-
-O.K i S.
-7:00,-,-
-8:00,-,-
-
-Bazarek od strony parku - przy zejściu na perony
-12:00,-,-
-13:00,-,-
-14:00,-,-
-15:00,-,-
-16:00,-,-
-
-piątek 29/11/2024
-
-Park od strony mostku
-7:00,-,-
-8:00,-,-
-
-Kolejowa API
-17:00,-,-
-18:30,-,-
-
-sobota 30/11/2024
-
-Park od strony bazarku
 7:30,o p,g h
-8:30,s t,g h
+8:30,random twenty-four ,random sixteen 
 9:30,c d,k l
 10:30,o p,m n
 11:30,s t,-
@@ -230,9 +126,113 @@ Park od strony bazarku
 
 Skwer na przeciwko żabki (koło tunelu)
 7:30,o p,g h
-8:30,a b,g h
+8:30,random twenty ,random nine 
 
 Kolejowa API
-12:00,c d,w x
-13:00,u v,y z
+12:00,w x,u v
+13:00,y z,u v
+
+wtorek 19/11/2024
+
+O.K i S.
+7:00,random sixteen ,random two 
+8:00,random eighteen ,random two 
+
+Park od strony mostku
+7:00,random fourteen ,random nine 
+8:00,random thirteen ,random twenty-seven 
+
+czwartek 21/11/2024
+
+O.K i S.
+7:00,k l,u v
+8:00,k l,e f
+
+Bazarek od strony parku - przy zejściu na perony
+12:00,random six ,random sixteen 
+13:00,random three ,random seventeen 
+14:00,random twenty-eight ,random nine 
+15:00,o p,a b
+16:00,o p,y z
+
+piątek 22/11/2024
+
+Park od strony mostku
+7:00,k l,e f
+8:00,i j,g h
+
+Kolejowa API
+17:00,k l,i j
+18:30,-,-
+
+sobota 23/11/2024
+
+Park od strony bazarku
+7:30,g h,o p
+8:30,random twenty-four ,random twenty-eight 
+9:30,c d,k l
+10:30,o p,m n
+11:30,s t,-
+12:30,-,-
+13:30,-,-
+
+Skwer na przeciwko żabki (koło tunelu)
+7:30,g h,o p
+8:30,random twenty-six ,random nine 
+
+Kolejowa API
+12:00,w x,c d
+13:00,y z,u v
+
+wtorek 26/11/2024
+
+O.K i S.
+7:00,random fourteen ,random twenty-five 
+8:00,a b,random seven 
+
+Park od strony mostku
+7:00,random twenty-one ,random fourteen 
+8:00,random one ,random twenty 
+
+czwartek 28/11/2024
+
+O.K i S.
+7:00,k l,u v
+8:00,e f,k l
+
+Bazarek od strony parku - przy zejściu na perony
+12:00,random seventeen ,i j
+13:00,a b,random three 
+14:00,random twenty-five ,random twenty-four 
+15:00,random twenty ,random twenty-four 
+16:00,y z,o p
+
+piątek 29/11/2024
+
+Park od strony mostku
+7:00,k l,i j
+8:00,i j,k l
+
+Kolejowa API
+17:00,k l,i j
+18:30,-,-
+
+sobota 30/11/2024
+
+Park od strony bazarku
+7:30,g h,o p
+8:30,random nineteen ,random fifteen 
+9:30,k l,c d
+10:30,m n,o p
+11:30,s t,-
+12:30,-,-
+13:30,-,-
+
+Skwer na przeciwko żabki (koło tunelu)
+7:30,g h,o p
+8:30,random twelve ,random twenty 
+
+Kolejowa API
+12:00,u v,c d
+13:00,y z,u v
 

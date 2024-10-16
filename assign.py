@@ -205,7 +205,20 @@ class AssignPublishers():
         if ( start_line < len( read_rows ) ): 
             for i in range( start_line, len( read_rows ) ):
 
+                if ( (len( read_rows[ i ] ) == 1) and ( 'wtorek' in read_rows[i][0] ) ):
+                    self.assign_people( self.grafik, 'wtorek', i+1 )
+                    print( f'row 0: { read_rows[ i ] }\nline number: {i+1}' )
+
+                if ( (len( read_rows[ i ] ) == 1) and ( 'czwartek' in read_rows[i][0] ) ):
+                    self.assign_people( self.grafik, 'czwartek', i+1 )
+                    print( f'row 0: { read_rows[ i ] }\nline number: {i+1}' )
+
+                if ( (len( read_rows[ i ] ) == 1) and ( 'piątek' in read_rows[i][0] ) ):
+                    self.assign_people( self.grafik, 'piątek', i+1 )
+                    print( f'row 0: { read_rows[ i ] }\nline number: {i+1}' )
+
                 if ( (len( read_rows[ i ] ) == 1) and ( 'sobota' in read_rows[i][0] ) ):
-                    print( f'row 0: { read_rows[ i ][ 0 ] }' )
+                    self.assign_people( self.grafik, 'sobota', i+1 )
+                    print( f'row 0: { read_rows[ i ] }\nline number: {i+1}' )
 
         return
