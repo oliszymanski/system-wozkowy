@@ -10,6 +10,10 @@ import calendar
 
 import templates
 
+import pandas as pd
+
+from openpyxl import load_workbook
+
 
 
 #=======================================================
@@ -47,10 +51,10 @@ class AssignPublishers():
 
     def __init__(self, grafik: str, dyspozycyjnosc: str, month: int, year: int ):
 
-        self.grafik = grafik
-        self.dyspozycyjnosc = dyspozycyjnosc
+        self.grafik = grafik                    # path to grafik
+        self.dyspozycyjnosc = dyspozycyjnosc    # path to dyspozycyjnosc
 
-        self.month = month
+        self.month = month  
         self.year = year
 
         return None
@@ -213,3 +217,29 @@ class AssignPublishers():
                     print( f'row 0: { read_rows[ i ] }\nline number: {i+1}' )
 
         return
+    
+
+
+def load_csv_files( csv_file : str, excel_file : str ):
+
+    '''
+        input:
+            csv_file:       .csv file(-path) ready to be loaded,
+            excel_file:     spreadsheet file(-path), that .csv will be loaded to;
+
+        output:
+            'files loaded';
+    '''
+
+    csv_data = pd.read_csv( csv_file )
+    book = load_workbook( excel_file )
+
+    sheet_name = 'grafik'         # sheet name to upload .csv file
+
+    with pd.ExcelWriter( excel_file, engine='openpyxl', mode='a', if_sheet_exists='replace' ) as writer:
+        writer.book = book
+        csv_data.to_excel( writer, index=False, sheet_name=sheet_name )
+
+    print( f'CSV data saved to { sheet_name } in { excel_file }' )
+
+    return 'files loaded'
